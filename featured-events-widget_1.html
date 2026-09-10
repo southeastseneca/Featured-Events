@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Featured Events — South East Seneca</title>
+<link href="https://fonts.googleapis.com/css2?family=Antonio:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:#4E6D77}
+  body{font-family:'Georgia',serif;color:#f5deb3}
+  .widget{max-width:1100px;margin:0 auto;padding:0 0 28px}
+  .header{background:#1D272B;text-align:center;padding:24px 20px 18px;margin-bottom:20px}
+  .header-eyebrow{font-family:'Antonio',sans-serif;font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:#f5deb3;margin-bottom:4px}
+  .header-title{font-family:'Antonio',sans-serif;font-size:46px;font-weight:700;color:#e8aa4a;letter-spacing:.04em;text-transform:uppercase;line-height:1}
+  .header-sub{font-family:'Antonio',sans-serif;font-size:13px;color:#f5deb3;margin-top:6px;letter-spacing:.1em;text-transform:uppercase}
+  .header-rule{width:120px;height:1px;background:#c9a96e;margin:12px auto 0}
+
+  /* rail (horizontal scroll) */
+  .rail-wrap{position:relative;padding:0 16px}
+  .rail{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:4px 4px 14px;scrollbar-width:thin;scrollbar-color:#e8aa4a55 transparent}
+  .rail::-webkit-scrollbar{height:6px}
+  .rail::-webkit-scrollbar-thumb{background:#e8aa4a55;border-radius:3px}
+  .arrow{position:absolute;top:42%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;border:1px solid #e8aa4a;background:#1D272Bdd;color:#e8aa4a;font-size:18px;line-height:1;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:2}
+  .arrow:hover{background:#e8aa4a;color:#1D272B}
+  .arrow.left{left:2px}.arrow.right{right:2px}
+  .rail-wrap.has-overflow .arrow{display:flex}
+
+  /* cards */
+  .card{flex:0 0 250px;scroll-snap-align:start;background:#323D41;border:1px solid #4a5a60;border-radius:10px;overflow:hidden;display:flex;flex-direction:column;text-decoration:none;color:inherit;transition:transform .15s,border-color .15s}
+  .card:hover{transform:translateY(-3px);border-color:#e8aa4a}
+  .poster{position:relative;aspect-ratio:4/5;background:#1D272B;overflow:hidden}
+  .poster img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+  .poster.fallback{display:flex;align-items:center;justify-content:center}
+  .initials{font-family:'Antonio',sans-serif;font-weight:700;font-size:64px;letter-spacing:.05em;opacity:.9}
+  .date-badge{position:absolute;top:10px;left:10px;background:#e8aa4a;color:#1D272B;font-family:'Antonio',sans-serif;font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase;padding:5px 9px;border-radius:5px;line-height:1.1;box-shadow:0 2px 6px #0006}
+  .soon-badge{position:absolute;top:10px;right:10px;background:#1D272B;color:#e8aa4a;font-family:'Antonio',sans-serif;font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:4px 8px;border-radius:20px;border:1px solid #e8aa4a}
+  .body{padding:12px 14px 14px;display:flex;flex-direction:column;gap:4px;flex:1}
+  .biz{font-family:'Antonio',sans-serif;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#e8aa4a}
+  .name{font-family:'Antonio',sans-serif;font-size:19px;font-weight:700;color:#f5deb3;line-height:1.1;text-transform:uppercase;letter-spacing:.02em}
+  .when{font-family:'Antonio',sans-serif;font-size:11px;color:#9b7b5a;letter-spacing:.06em}
+  .blurb{font-family:'Georgia',serif;font-size:12.5px;line-height:1.4;color:#f5deb3cc;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;margin-top:4px}
+  .tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
+  .tag{font-family:Arial,sans-serif;font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#1a1a1a;background:#c98a2c;border-radius:3px;padding:2px 5px}
+  .more{margin-top:auto;padding-top:10px;font-family:'Antonio',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#6b8a8a}
+  .card:hover .more{color:#e8aa4a}
+
+  .empty{text-align:center;padding:50px 20px;font-family:'Antonio',sans-serif;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:#9b7b5a}
+  .footer{text-align:center;margin-top:8px;font-family:'Antonio',sans-serif;font-size:11px;color:#4a6470;letter-spacing:.08em;text-transform:uppercase}
+  .footer a{color:#6b8a8a;text-decoration:none}
+  .footer a:hover{color:#e8aa4a}
+
+  /* stack layout: used automatically when the widget is narrow (e.g. a side column
+     next to the Live Music widget), or forced with ?layout=stack */
+  body.stack .rail{flex-direction:column;overflow:visible;scroll-snap-type:none;padding:0 12px}
+  body.stack .card{flex:0 0 auto;flex-direction:row}
+  body.stack .poster{width:120px;flex:0 0 120px;aspect-ratio:auto;min-height:150px}
+  body.stack .initials{font-size:34px}
+  body.stack .date-badge{font-size:11px;padding:4px 7px}
+  body.stack .soon-badge{display:none}
+  body.stack .name{font-size:16px}
+  body.stack .blurb{-webkit-line-clamp:2}
+  body.stack .arrow{display:none!important}
+  body.stack .header-title{font-size:34px}
+  body.stack .header{padding:18px 14px 14px;margin-bottom:14px}
+  @media(max-width:600px){.header-title{font-size:36px}}
+</style>
+</head>
+<body>
+<div class="widget">
+  <div class="header">
+    <div class="header-eyebrow">South East Seneca</div>
+    <div class="header-title">Featured Events</div>
+    <div class="header-sub">Festivals, parties &amp; big days on the lake</div>
+    <div class="header-rule"></div>
+  </div>
+  <div class="rail-wrap" id="railWrap">
+    <button class="arrow left" aria-label="Scroll left" onclick="slide(-1)">‹</button>
+    <div class="rail" id="rail"><div class="empty">Loading…</div></div>
+    <button class="arrow right" aria-label="Scroll right" onclick="slide(1)">›</button>
+  </div>
+  <div class="footer">
+    <a href="https://www.southeastseneca.com/events" target="_blank">Full calendar</a>
+    &nbsp;•&nbsp; Updated every Monday
+  </div>
+</div>
+<script>
+// ─────────────────────────────────────────────────────────────────────────────
+// HOW TO ADD AN EVENT
+// Add one object to the EVENTS array below (anywhere; the page sorts by date).
+// Fields:
+//   name     (required) event title
+//   business (required) host business, exactly as it appears on the SESA site
+//   start    (required) "YYYY-MM-DD"
+//   end      (optional) "YYYY-MM-DD" for multi-day events; omit for one-day
+//   time     (optional) "11 AM – 5:30 PM"
+//   blurb    (optional) one or two sentences
+//   poster   (optional) image URL, or "posters/filename.jpg" for a file in this repo
+//   url      (optional) where "Details" goes (event page, Facebook event, etc.)
+//   tags     (optional) ["Live Music","Vendors","Food Trucks","Free","Tickets"]
+// Events disappear on their own the day after they end. Nothing to clean up.
+// ─────────────────────────────────────────────────────────────────────────────
+const EVENTS = [
+  {name:"Silver Thread's 35th Anniversary Dinner", business:"Silver Thread Winegarden", start:"2026-09-12", time:"7 – 9 PM",
+   blurb:"A five-course, locally sourced dinner paired with Silver Thread wines, including sparkling and library selections. Reservations required.",
+   poster:"https://images.squarespace-cdn.com/content/v1/66e2f05633fd056116cd6ddc/1782927103970-GCSYBZ23SZLKZT9AU9NK/BuildingExteriorEastSide.jpg",
+   url:"https://www.southeastseneca.com/events/heuriger-night-at-the-silver-thread-winegarden-b8jf4-k84ry", tags:["Tickets","Dinner"]},
+
+  {name:"Southeast Seneca Disc Golf Classic", business:"Grist Iron Brewing", start:"2026-09-19",
+   blurb:"A day of disc golf at Grist Iron, sponsored by Southeast Seneca businesses with giveaways and prizes at every hole.",
+   url:"https://www.southeastseneca.com/events", tags:["Sign Up","Prizes"]},
+
+  {name:"Red Cat's Harvest Party", business:"Hazlitt 1852 Vineyards", start:"2026-09-20", time:"11 AM – 5:30 PM",
+   blurb:"Great wine, three live acts, food trucks, vendors, lawn games and raffles benefiting the local fire department. Free admission, case discounts all day.",
+   poster:"https://images.squarespace-cdn.com/content/v1/66e2f05633fd056116cd6ddc/1787154921144-8B2RAEEESJOZLILUF34F/500x700_SES_RCHarvestParty_2026.jpg",
+   url:"https://www.southeastseneca.com/events/red-cats-harvest-party", tags:["Live Music","Food Trucks","Vendors","Free"]},
+
+  {name:"Balloons on the Ridge", business:"Idol Ridge Winery", start:"2026-09-25", end:"2026-09-27", time:"Fri 4:30 PM – Sun 5 PM",
+   blurb:"Hot air balloon weekend: sunset and sunrise flights, tethered rides, a balloon glow, three live music acts and food trucks. Free admission, $10 parking.",
+   poster:"https://images.squarespace-cdn.com/content/v1/66e2f05633fd056116cd6ddc/1780506663526-N8755L22UFHFP0YBZUU5/Balloons+on+the+Ridge_IR+%281%29.png",
+   url:"https://www.southeastseneca.com/events/kleysqweir3es0jzmv3upoyfdb6den", tags:["Live Music","Food Trucks","Family"]},
+];
+
+// Fallback colors when an event has no poster (same set as the Live Music widget)
+const BIZ = {
+  "Grist Iron Brewing":{bg:"#C45022",fg:"#fff",abbr:"GI"},
+  "Two Goats Brewing":{bg:"#7A1A1A",fg:"#C9A96E",abbr:"TG"},
+  "Hazlitt 1852 Vineyards":{bg:"#8fa8a8",fg:"#1a1a1a",abbr:"H"},
+  "Wagner Vineyards":{bg:"#fff",fg:"#1a1a1a",abbr:"W"},
+  "Scale House Brewery":{bg:"#1a3a5c",fg:"#f5deb3",abbr:"SH"},
+  "Solera Taphouse":{bg:"#4a6670",fg:"#fff",abbr:"ST"},
+  "Lucky Hare Brewing":{bg:"#2d4a3e",fg:"#f5deb3",abbr:"LH"},
+  "Rasta Ranch Vineyards":{bg:"#8B1A1A",fg:"#e8aa4a",abbr:"RR"},
+  "Idol Ridge Winery":{bg:"#6a4a8a",fg:"#fff",abbr:"IR"},
+  "Either Oar":{bg:"#1a1a1a",fg:"#e8aa4a",abbr:"EO"},
+  "Stonecat Café":{bg:"#6a4a7a",fg:"#fff",abbr:"SC"},
+  "Forge Cellars":{bg:"#1a2a3a",fg:"#f5deb3",abbr:"FC"},
+  "Atwater Vineyards":{bg:"#555",fg:"#fff",abbr:"AV"},
+  "Damiani Cellars":{bg:"#8B6914",fg:"#1a1a1a",abbr:"D"},
+  "Hillick & Hobbs":{bg:"#f5f5f0",fg:"#1a1a1a",abbr:"HH"},
+  "Leidenfrost Vineyards":{bg:"#1a1a1a",fg:"#fff",abbr:"LV"},
+  "Osmote Wines":{bg:"#1a1a1a",fg:"#fff",abbr:"OS"},
+  "Sawmill Creek":{bg:"#2d5a27",fg:"#fff",abbr:"SM"},
+  "Ria's Wines":{bg:"#6b4423",fg:"#f5deb3",abbr:"RW"},
+  "Finger Lakes Distilling":{bg:"#4a5d23",fg:"#e8e4c9",abbr:"FL"},
+  "Red Newt Cellars":{bg:"#8a2020",fg:"#f5deb3",abbr:"RN"},
+  "The Diamond on Seneca":{bg:"#0a3d5c",fg:"#f5deb3",abbr:"DS"},
+  "Silver Thread Winegarden":{bg:"#b8b8b8",fg:"#1a1a1a",abbr:"ST"},
+};
+
+const MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const DAYS=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+function parse(s){const m=String(s||'').match(/(\d{4})\D(\d{1,2})\D(\d{1,2})/);if(!m)return null;const d=new Date(+m[1],+m[2]-1,+m[3]);return isNaN(d)?null:d}
+function esc(s){return String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+function badge(s,e){
+  if(!e||e.getTime()===s.getTime()) return `${MON[s.getMonth()]} ${s.getDate()}`;
+  if(s.getMonth()===e.getMonth()) return `${MON[s.getMonth()]} ${s.getDate()}–${e.getDate()}`;
+  return `${MON[s.getMonth()]} ${s.getDate()} – ${MON[e.getMonth()]} ${e.getDate()}`;
+}
+function whenText(ev,s,e){
+  let w=(!e||e.getTime()===s.getTime())?`${DAYS[s.getDay()]}, ${MON[s.getMonth()]} ${s.getDate()}`:`${DAYS[s.getDay()]} ${MON[s.getMonth()]} ${s.getDate()} – ${DAYS[e.getDay()]} ${MON[e.getMonth()]} ${e.getDate()}`;
+  if(ev.time) w+=`  •  ${ev.time}`;
+  return w;
+}
+function bizStyle(ev){
+  return BIZ[ev.business]||{bg:"#3a3a3a",fg:"#f5deb3",abbr:(ev.business||'?').charAt(0).toUpperCase()};
+}
+// The poster box always carries the badges. If there's an image and it fails to
+// load, we just hide the <img> and let the colored initials underneath show.
+function posterHtml(ev,badges){
+  const b=bizStyle(ev);
+  const img=ev.poster?`<img src="${esc(ev.poster)}" alt="${esc(ev.name)} poster" loading="lazy">`:'';
+  return `<div class="poster fallback" style="background:${b.bg};color:${b.fg}"><span class="initials">${esc(b.abbr)}</span>${img}${badges}</div>`;
+}
+function attachPosterFallbacks(){
+  document.querySelectorAll('.poster img').forEach(img=>{
+    img.addEventListener('error',function(){this.remove()},{once:true});
+    if(img.complete&&img.naturalWidth===0)img.remove();
+  });
+}
+function build(){
+  const today=new Date();today.setHours(0,0,0,0);
+  const soonCutoff=new Date(today);soonCutoff.setDate(soonCutoff.getDate()+7);
+  const list=EVENTS.map(ev=>{const s=parse(ev.start),e=parse(ev.end)||s;return s?{...ev,s,e}:null})
+    .filter(x=>x&&x.e>=today).sort((a,b)=>a.s-b.s);
+  const rail=document.getElementById('rail');
+  if(!list.length){rail.innerHTML='<div class="empty">No featured events on the books yet. Check the full calendar.</div>';return}
+  rail.innerHTML=list.map(ev=>{
+    const soon=ev.s<=soonCutoff?`<span class="soon-badge">${ev.s.getTime()===today.getTime()?'Today':'This Week'}</span>`:'';
+    const tags=(ev.tags||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join('');
+    const href=ev.url?`href="${esc(ev.url)}" target="_blank" rel="noopener"`:'';
+    const badges=`<span class="date-badge">${badge(ev.s,ev.e)}</span>${soon}`;
+    return `<a class="card" ${href}>
+      ${posterHtml(ev,badges)}
+      <div class="body">
+        <div class="biz">${esc(ev.business)}</div>
+        <div class="name">${esc(ev.name)}</div>
+        <div class="when">${esc(whenText(ev,ev.s,ev.e))}</div>
+        ${ev.blurb?`<div class="blurb">${esc(ev.blurb)}</div>`:''}
+        ${tags?`<div class="tags">${tags}</div>`:''}
+        ${ev.url?'<div class="more">Details →</div>':''}
+      </div></a>`;
+  }).join('');
+  attachPosterFallbacks();
+  checkOverflow();
+}
+function slide(dir){const r=document.getElementById('rail');r.scrollBy({left:dir*(r.clientWidth*0.8),behavior:'smooth'})}
+function checkOverflow(){const r=document.getElementById('rail');document.getElementById('railWrap').classList.toggle('has-overflow',r.scrollWidth>r.clientWidth+8)}
+function applyLayout(){
+  const q=new URLSearchParams(location.search).get('layout');
+  const stack=q==='stack'||(q!=='rail'&&window.innerWidth<480);
+  document.body.classList.toggle('stack',stack);
+  checkOverflow();
+  // tell the parent page (Squarespace embed) how tall we are
+  try{parent.postMessage({sesFeaturedHeight:document.documentElement.scrollHeight},'*')}catch(e){}
+}
+window.addEventListener('resize',applyLayout);
+build();applyLayout();
+setTimeout(applyLayout,800);
+</script>
+</body>
+</html>
