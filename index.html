@@ -64,7 +64,17 @@
   body.stack .arrow{display:none!important}
   body.stack .header-title{font-size:34px}
   body.stack .header{padding:18px 14px 14px;margin-bottom:14px}
-  @media(max-width:600px){.header-title{font-size:36px}}
+  /* phones: same left-to-right swipe rail, just one card at a time */
+  @media(max-width:600px){
+    .header-title{font-size:17px;letter-spacing:.02em}
+    .rail-wrap{padding:0 10px}
+    .rail{gap:10px;scroll-padding-left:10px}
+    .card{flex:0 0 78vw;max-width:320px}
+    .poster{aspect-ratio:4/3}
+    .name{font-size:16px}
+    .arrow{display:none!important}
+    .blurb{-webkit-line-clamp:2}
+  }
 </style>
 </head>
 <body>
@@ -190,7 +200,7 @@ function slide(dir){const r=document.getElementById('rail');r.scrollBy({left:dir
 function checkOverflow(){const r=document.getElementById('rail');document.getElementById('railWrap').classList.toggle('has-overflow',r.scrollWidth>r.clientWidth+8)}
 function applyLayout(){
   const q=new URLSearchParams(location.search).get('layout');
-  const stack=q==='stack'||(q!=='rail'&&window.innerWidth<480);
+  const stack=q==='stack';  // side-column mode only when asked for; phones keep the swipe rail
   document.body.classList.toggle('stack',stack);
   checkOverflow();
   // tell the parent page (Squarespace embed) how tall we are
