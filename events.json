@@ -98,6 +98,22 @@
     ]
   },
   {
+    "name": "16th Anniversary Halloween Party",
+    "business": "Hector Wine Company",
+    "start": "2026-10-23",
+    "end": "",
+    "time": "6 - 9 PM",
+    "blurb": "Sawmill Creek Estate presents Hector Wine Company's 16th Anniversary Halloween Party, featuring DJ Anthony Mansfeild, beer, and wine. Costumes are strongly encouraged!",
+    "poster": "posters/hector-wine-company-16th-anniversary-halloween-party-2026.jpg",
+    "url": "https://www.southeastseneca.com/events",
+    "tags": [
+      "halloween",
+      "wine",
+      "beer",
+      "dj"
+    ]
+  },
+  {
     "name": "Autumn on the Ridge",
     "business": "Tamarack Ridge Farm",
     "start": "2026-10-24",
