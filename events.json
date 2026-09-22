@@ -1,0 +1,100 @@
+[
+  {
+    "name": "Silver Thread's 35th Anniversary Dinner",
+    "business": "Silver Thread Winegarden",
+    "start": "2026-09-12",
+    "time": "7 – 9 PM",
+    "blurb": "A five-course, locally sourced dinner paired with Silver Thread wines, including sparkling and library selections. Reservations required.",
+    "poster": "https://images.squarespace-cdn.com/content/v1/66e2f05633fd056116cd6ddc/1782927103970-GCSYBZ23SZLKZT9AU9NK/BuildingExteriorEastSide.jpg",
+    "url": "https://www.southeastseneca.com/events/heuriger-night-at-the-silver-thread-winegarden-b8jf4-k84ry",
+    "tags": [
+      "Tickets",
+      "Dinner"
+    ]
+  },
+  {
+    "name": "Southeast Seneca Disc Golf Classic",
+    "business": "Grist Iron Brewing",
+    "start": "2026-09-19",
+    "blurb": "A day of disc golf at Grist Iron, sponsored by Southeast Seneca businesses with giveaways and prizes at every hole.",
+    "poster": "grist-iron-disc-golf-2026.jpg",
+    "url": "https://www.southeastseneca.com/events",
+    "tags": [
+      "Sign Up",
+      "Prizes"
+    ]
+  },
+  {
+    "name": "Red Cat's Harvest Party",
+    "business": "Hazlitt 1852 Vineyards",
+    "start": "2026-09-20",
+    "time": "11 AM – 5:30 PM",
+    "blurb": "Great wine, three live acts, food trucks, vendors, lawn games and raffles benefiting the local fire department. Free admission, case discounts all day.",
+    "poster": "https://images.squarespace-cdn.com/content/v1/66e2f05633fd056116cd6ddc/1787154921144-8B2RAEEESJOZLILUF34F/500x700_SES_RCHarvestParty_2026.jpg",
+    "url": "https://www.southeastseneca.com/events/red-cats-harvest-party",
+    "tags": [
+      "Live Music",
+      "Food Trucks",
+      "Vendors",
+      "Free"
+    ]
+  },
+  {
+    "name": "Balloons on the Ridge",
+    "business": "Idol Ridge Winery",
+    "start": "2026-09-25",
+    "end": "2026-09-27",
+    "time": "Fri 4:30 PM – Sun 5 PM",
+    "blurb": "Hot air balloon weekend: sunset and sunrise flights, tethered rides, a balloon glow, three live music acts and food trucks. Free admission, $10 parking.",
+    "poster": "https://images.squarespace-cdn.com/content/v1/66e2f05633fd056116cd6ddc/1780506663526-N8755L22UFHFP0YBZUU5/Balloons+on+the+Ridge_IR+%281%29.png",
+    "url": "https://www.southeastseneca.com/events/kleysqweir3es0jzmv3upoyfdb6den",
+    "tags": [
+      "Live Music",
+      "Food Trucks",
+      "Family"
+    ]
+  },
+  {
+    "name": "Solera Oktoberfest",
+    "business": "Solera Taphouse",
+    "start": "2026-09-26",
+    "time": "Noon – 10 PM",
+    "blurb": "Festbier tap takeover, festive food, lawn games and three bands from noon to close. Free to get in, and the stein holding competition kicks off at 4!",
+    "poster": "solera-oktoberfest-2026.jpg",
+    "url": "https://solerataphouse.com",
+    "tags": [
+      "Live Music",
+      "Food",
+      "Lawn Games",
+      "Free"
+    ]
+  },
+  {
+    "name": "Highland Harvest Festival",
+    "business": "Finger Lakes Distilling",
+    "start": "2026-10-11",
+    "time": "12 – 6 PM",
+    "blurb": "Highland cows, Celtic dancers, Highland games, live music and a Scottish menu. Plus the release of their 7 Year Single Malt!",
+    "poster": "fld-highland-harvest-2026.jpg",
+    "url": "https://www.southeastseneca.com/events",
+    "tags": [
+      "Live Music",
+      "Highland Games",
+      "Whiskey Release"
+    ]
+  },
+  {
+    "name": "Community Tasting",
+    "business": "Ria's Wines",
+    "start": "2026-10-17",
+    "time": "12 – 4 PM",
+    "blurb": "Seven wine brands, one afternoon. Taste with every maker who crafts wine at Ria's or works with grapes from their farm. $20 a person.",
+    "poster": "rias-community-tasting-2026.jpg",
+    "url": "https://www.southeastseneca.com/events",
+    "tags": [
+      "Wine Tasting",
+      "7 Wine Brands",
+      "$20"
+    ]
+  }
+]

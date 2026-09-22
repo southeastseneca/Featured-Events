@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Featured Events — South East Seneca</title>
+<link href="https://fonts.googleapis.com/css2?family=Antonio:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:#4E6D77}
+  body{font-family:'Georgia',serif;color:#f5deb3}
+  .widget{max-width:1100px;margin:0 auto;padding:0 0 14px}
+  .header{background:#1D272B;text-align:center;padding:9px 16px 8px;margin-bottom:10px}
+  .header-eyebrow{font-family:'Antonio',sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#f5deb3;margin-bottom:4px}
+  .header-title{font-family:'Antonio',sans-serif;font-size:24px;font-weight:700;color:#e8aa4a;letter-spacing:.04em;text-transform:uppercase;line-height:1}
+  .header-sub{font-family:'Antonio',sans-serif;font-size:11px;color:#f5deb3;margin-top:4px;letter-spacing:.1em;text-transform:uppercase}
+  .header-rule{width:100px;height:1px;background:#c9a96e;margin:8px auto 0}
+
+  /* rail (horizontal scroll) */
+  .rail-wrap{position:relative;padding:0 16px}
+  .rail{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:3px 3px 10px;scrollbar-width:thin;scrollbar-color:#e8aa4a55 transparent}
+  .rail::-webkit-scrollbar{height:6px}
+  .rail::-webkit-scrollbar-thumb{background:#e8aa4a55;border-radius:3px}
+  .arrow{position:absolute;top:42%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;border:1px solid #e8aa4a;background:#1D272Bdd;color:#e8aa4a;font-size:18px;line-height:1;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:2}
+  .arrow:hover{background:#e8aa4a;color:#1D272B}
+  .arrow.left{left:2px}.arrow.right{right:2px}
+  .rail-wrap.has-overflow .arrow{display:flex}
+
+  /* cards */
+  .card{flex:0 0 230px;scroll-snap-align:start;background:#323D41;border:1px solid #4a5a60;border-radius:10px;overflow:hidden;display:flex;flex-direction:column;text-decoration:none;color:inherit;transition:transform .15s,border-color .15s}
+  .card:hover{transform:translateY(-3px);border-color:#e8aa4a}
+  .poster{position:relative;aspect-ratio:5/4;background:#1D272B;overflow:hidden}
+  .poster img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+  .poster.fallback{display:flex;align-items:center;justify-content:center}
+  .initials{font-family:'Antonio',sans-serif;font-weight:700;font-size:48px;letter-spacing:.05em;opacity:.9}
+  .date-badge{position:absolute;top:10px;left:10px;background:#e8aa4a;color:#1D272B;font-family:'Antonio',sans-serif;font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase;padding:5px 9px;border-radius:5px;line-height:1.1;box-shadow:0 2px 6px #0006}
+  .soon-badge{position:absolute;top:10px;right:10px;background:#1D272B;color:#e8aa4a;font-family:'Antonio',sans-serif;font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:4px 8px;border-radius:20px;border:1px solid #e8aa4a}
+  .body{padding:10px 12px 12px;display:flex;flex-direction:column;gap:3px;flex:1}
+  .biz{font-family:'Antonio',sans-serif;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#e8aa4a}
+  .name{font-family:'Antonio',sans-serif;font-size:17px;font-weight:700;color:#f5deb3;line-height:1.1;text-transform:uppercase;letter-spacing:.02em}
+  .when{font-family:'Antonio',sans-serif;font-size:11px;color:#9b7b5a;letter-spacing:.06em}
+  .blurb{font-family:'Georgia',serif;font-size:12.5px;line-height:1.4;color:#f5deb3cc;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-top:4px}
+  .tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
+  .tag{font-family:Arial,sans-serif;font-size:9px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#1a1a1a;background:#c98a2c;border-radius:3px;padding:2px 5px}
+  .more{margin-top:auto;padding-top:7px;font-family:'Antonio',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#6b8a8a}
+  .card:hover .more{color:#e8aa4a}
+
+  .empty{text-align:center;padding:50px 20px;font-family:'Antonio',sans-serif;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:#9b7b5a}
+  .footer{text-align:center;margin-top:4px;font-family:'Antonio',sans-serif;font-size:11px;color:#4a6470;letter-spacing:.08em;text-transform:uppercase}
+  .footer a{color:#6b8a8a;text-decoration:none}
+  .footer a:hover{color:#e8aa4a}
+
+  /* stack layout: used automatically when the widget is narrow (e.g. a side column
+     next to the Live Music widget), or forced with ?layout=stack */
+  body.stack .rail{flex-direction:column;overflow:visible;scroll-snap-type:none;padding:0 12px}
+  body.stack .card{flex:0 0 auto;flex-direction:row}
+  body.stack .poster{width:120px;flex:0 0 120px;aspect-ratio:auto;min-height:150px}
+  body.stack .initials{font-size:34px}
+  body.stack .date-badge{font-size:11px;padding:4px 7px}
+  body.stack .soon-badge{display:none}
+  body.stack .name{font-size:16px}
+  body.stack .blurb{-webkit-line-clamp:2}
+  body.stack .arrow{display:none!important}
+  body.stack .header-title{font-size:34px}
+  body.stack .header{padding:18px 14px 14px;margin-bottom:14px}
+  @media(max-width:600px){.header-title{font-size:36px}}
+</style>
+</head>
+<body>
+<div class="widget">
+  <div class="header">
+    <div class="header-title">South East Seneca <span style="color:#f5deb3">Featured Events</span></div>
+  </div>
+  <div class="rail-wrap" id="railWrap">
+    <button class="arrow left" aria-label="Scroll left" onclick="slide(-1)">‹</button>
+    <div class="rail" id="rail"><div class="empty">Loading…</div></div>
+    <button class="arrow right" aria-label="Scroll right" onclick="slide(1)">›</button>
+  </div>
+  <div class="footer">
+    <a href="https://www.southeastseneca.com/events" target="_blank">Full calendar</a>
+    &nbsp;•&nbsp; Updated every Monday
+  </div>
+</div>
+<script>
+// ─────────────────────────────────────────────────────────────────────────────
+// HOW TO ADD AN EVENT
+// Add one object to the EVENTS array below (anywhere; the page sorts by date).
+// Fields:
+//   name     (required) event title
+//   business (required) host business, exactly as it appears on the SESA site
+//   start    (required) "YYYY-MM-DD"
+//   end      (optional) "YYYY-MM-DD" for multi-day events; omit for one-day
+//   time     (optional) "11 AM – 5:30 PM"
+//   blurb    (optional) one or two sentences
+//   poster   (optional) image URL, or "posters/filename.jpg" for a file in this repo
+//   url      (optional) where "Details" goes (event page, Facebook event, etc.)
+//   tags     (optional) ["Live Music","Vendors","Food Trucks","Free","Tickets"]
+// Events disappear on their own the day after they end. Nothing to clean up.
+// ─────────────────────────────────────────────────────────────────────────────
+let EVENTS = [];  // loaded from events.json (see loadEvents below)
+
+// Fallback colors when an event has no poster (same set as the Live Music widget)
+const BIZ = {
+  "Grist Iron Brewing":{bg:"#C45022",fg:"#fff",abbr:"GI"},
+  "Two Goats Brewing":{bg:"#7A1A1A",fg:"#C9A96E",abbr:"TG"},
+  "Hazlitt 1852 Vineyards":{bg:"#8fa8a8",fg:"#1a1a1a",abbr:"H"},
+  "Wagner Vineyards":{bg:"#fff",fg:"#1a1a1a",abbr:"W"},
+  "Scale House Brewery":{bg:"#1a3a5c",fg:"#f5deb3",abbr:"SH"},
+  "Solera Taphouse":{bg:"#4a6670",fg:"#fff",abbr:"ST"},
+  "Lucky Hare Brewing":{bg:"#2d4a3e",fg:"#f5deb3",abbr:"LH"},
+  "Rasta Ranch Vineyards":{bg:"#8B1A1A",fg:"#e8aa4a",abbr:"RR"},
+  "Idol Ridge Winery":{bg:"#6a4a8a",fg:"#fff",abbr:"IR"},
+  "Either Oar":{bg:"#1a1a1a",fg:"#e8aa4a",abbr:"EO"},
+  "Stonecat Café":{bg:"#6a4a7a",fg:"#fff",abbr:"SC"},
+  "Forge Cellars":{bg:"#1a2a3a",fg:"#f5deb3",abbr:"FC"},
+  "Atwater Vineyards":{bg:"#555",fg:"#fff",abbr:"AV"},
+  "Damiani Cellars":{bg:"#8B6914",fg:"#1a1a1a",abbr:"D"},
+  "Hillick & Hobbs":{bg:"#f5f5f0",fg:"#1a1a1a",abbr:"HH"},
+  "Leidenfrost Vineyards":{bg:"#1a1a1a",fg:"#fff",abbr:"LV"},
+  "Osmote Wines":{bg:"#1a1a1a",fg:"#fff",abbr:"OS"},
+  "Sawmill Creek":{bg:"#2d5a27",fg:"#fff",abbr:"SM"},
+  "Ria's Wines":{bg:"#6b4423",fg:"#f5deb3",abbr:"RW"},
+  "Finger Lakes Distilling":{bg:"#4a5d23",fg:"#e8e4c9",abbr:"FL"},
+  "Red Newt Cellars":{bg:"#8a2020",fg:"#f5deb3",abbr:"RN"},
+  "The Diamond on Seneca":{bg:"#0a3d5c",fg:"#f5deb3",abbr:"DS"},
+  "Silver Thread Winegarden":{bg:"#b8b8b8",fg:"#1a1a1a",abbr:"ST"},
+};
+
+const MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const DAYS=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+function parse(s){const m=String(s||'').match(/(\d{4})\D(\d{1,2})\D(\d{1,2})/);if(!m)return null;const d=new Date(+m[1],+m[2]-1,+m[3]);return isNaN(d)?null:d}
+function esc(s){return String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+function badge(s,e){
+  if(!e||e.getTime()===s.getTime()) return `${MON[s.getMonth()]} ${s.getDate()}`;
+  if(s.getMonth()===e.getMonth()) return `${MON[s.getMonth()]} ${s.getDate()}–${e.getDate()}`;
+  return `${MON[s.getMonth()]} ${s.getDate()} – ${MON[e.getMonth()]} ${e.getDate()}`;
+}
+function whenText(ev,s,e){
+  let w=(!e||e.getTime()===s.getTime())?`${DAYS[s.getDay()]}, ${MON[s.getMonth()]} ${s.getDate()}`:`${DAYS[s.getDay()]} ${MON[s.getMonth()]} ${s.getDate()} – ${DAYS[e.getDay()]} ${MON[e.getMonth()]} ${e.getDate()}`;
+  if(ev.time) w+=`  •  ${ev.time}`;
+  return w;
+}
+function bizStyle(ev){
+  return BIZ[ev.business]||{bg:"#3a3a3a",fg:"#f5deb3",abbr:(ev.business||'?').charAt(0).toUpperCase()};
+}
+// The poster box always carries the badges. If there's an image and it fails to
+// load, we just hide the <img> and let the colored initials underneath show.
+function posterHtml(ev,badges){
+  const b=bizStyle(ev);
+  const img=ev.poster?`<img src="${esc(ev.poster)}" alt="${esc(ev.name)} poster">`:'';
+  return `<div class="poster fallback" style="background:${b.bg};color:${b.fg}"><span class="initials">${esc(b.abbr)}</span>${img}${badges}</div>`;
+}
+function attachPosterFallbacks(){
+  // Only drop an image when the browser actually reports an error. Checking
+  // complete/naturalWidth here used to throw away posters that simply had not
+  // finished loading yet, which is why some cards showed initials at random.
+  document.querySelectorAll('.poster img').forEach(img=>{
+    img.addEventListener('error',function(){this.remove()},{once:true});
+    img.addEventListener('load',postHeight,{once:true});
+  });
+}
+function build(){
+  const today=new Date();today.setHours(0,0,0,0);
+  const soonCutoff=new Date(today);soonCutoff.setDate(soonCutoff.getDate()+7);
+  const list=EVENTS.map(ev=>{const s=parse(ev.start),e=parse(ev.end)||s;return s?{...ev,s,e}:null})
+    .filter(x=>x&&x.e>=today).sort((a,b)=>a.s-b.s);
+  const rail=document.getElementById('rail');
+  if(!list.length){rail.innerHTML='<div class="empty">No featured events on the books yet. Check the full calendar.</div>';return}
+  rail.innerHTML=list.map(ev=>{
+    const soon=ev.s<=soonCutoff?`<span class="soon-badge">${ev.s.getTime()===today.getTime()?'Today':'This Week'}</span>`:'';
+    const tags=(ev.tags||[]).map(t=>`<span class="tag">${esc(t)}</span>`).join('');
+    const href=ev.url?`href="${esc(ev.url)}" target="_blank" rel="noopener"`:'';
+    const badges=`<span class="date-badge">${badge(ev.s,ev.e)}</span>${soon}`;
+    return `<a class="card" ${href}>
+      ${posterHtml(ev,badges)}
+      <div class="body">
+        <div class="biz">${esc(ev.business)}</div>
+        <div class="name">${esc(ev.name)}</div>
+        <div class="when">${esc(whenText(ev,ev.s,ev.e))}</div>
+        ${ev.blurb?`<div class="blurb">${esc(ev.blurb)}</div>`:''}
+        ${tags?`<div class="tags">${tags}</div>`:''}
+        ${ev.url?'<div class="more">Details →</div>':''}
+      </div></a>`;
+  }).join('');
+  attachPosterFallbacks();
+  checkOverflow();
+}
+function slide(dir){const r=document.getElementById('rail');r.scrollBy({left:dir*(r.clientWidth*0.8),behavior:'smooth'})}
+function checkOverflow(){const r=document.getElementById('rail');document.getElementById('railWrap').classList.toggle('has-overflow',r.scrollWidth>r.clientWidth+8)}
+function applyLayout(){
+  const q=new URLSearchParams(location.search).get('layout');
+  const stack=q==='stack'||(q!=='rail'&&window.innerWidth<480);
+  document.body.classList.toggle('stack',stack);
+  checkOverflow();
+  // tell the parent page (Squarespace embed) how tall we are
+  postHeight();
+}
+// Report our real content height to the parent page (Squarespace embed).
+// Measure the widget itself, never the document: the document stretches to fill
+// the iframe, so measuring it makes the iframe grow a little taller every time.
+let lastH=0;
+function postHeight(){
+  const el=document.querySelector('.widget');
+  if(!el)return;
+  const h=Math.ceil(el.getBoundingClientRect().height)+4;
+  if(Math.abs(h-lastH)<2)return;
+  lastH=h;
+  try{parent.postMessage({sesFeaturedHeight:h},'*')}catch(e){}
+}
+window.addEventListener('resize',applyLayout);
+window.addEventListener('load',postHeight);
+loadEvents();
+setTimeout(applyLayout,800);
+
+// Events live in events.json so they can be updated without touching this file.
+// The poster-intake script writes to that file too.
+async function loadEvents(){
+  try{
+    const res = await fetch('events.json?cb=' + Date.now(), {cache:'no-store'});
+    if(!res.ok) throw new Error('events.json ' + res.status);
+    const data = await res.json();
+    EVENTS = Array.isArray(data) ? data : (data.events || []);
+  }catch(err){
+    console.error('Could not load events.json', err);
+    EVENTS = [];
+  }
+  build();
+  applyLayout();
+}
+</script>
+</body>
+</html>
