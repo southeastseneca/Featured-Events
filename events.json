@@ -96,5 +96,21 @@
       "7 Wine Brands",
       "$20"
     ]
+  },
+  {
+    "name": "Autumn on the Ridge",
+    "business": "Tamarack Ridge Farm",
+    "start": "2026-10-24",
+    "end": "",
+    "time": "12 - 4 PM",
+    "blurb": "Celebrate the season with creative humans, thoughtful products, and mindful living in the Finger Lakes.",
+    "poster": "posters/tamarack-ridge-farm-autumn-on-the-ridge-2026.jpg",
+    "url": "https://www.southeastseneca.com/events",
+    "tags": [
+      "seasonal",
+      "market",
+      "fall festival",
+      "farm"
+    ]
   }
 ]
