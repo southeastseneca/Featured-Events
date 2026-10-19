@@ -141,6 +141,17 @@
     ]
   },
   {
+    "name": "Hare Roast 8",
+    "business": "Lucky Hare Brewing Company",
+    "start": "2026-10-24",
+    "end": "",
+    "time": "2 - 9 PM",
+    "blurb": "Head to Lucky Hare Brewing Company in Hector for Hare Roast 8. Catch live music from Rena Guinn & Joe Lule from 2 to 5 PM and Cast Iron Cowboys from 5 to 8 PM, along with food by Babe's Burger and a new beer release.",
+    "poster": "posters/lucky-hare-brewing-company-hare-roast-8-2026.jpg",
+    "url": "https://luckyharebrewing.com",
+    "tags": []
+  },
+  {
     "name": "Harvest's End: A Pairing Dinner at the Winegarden",
     "business": "Silver Thread Vineyard",
     "start": "2026-11-06",
