@@ -205,6 +205,17 @@
     "tags": []
   },
   {
+    "name": "Holiday Market",
+    "business": "Lucky Hare Brewing Company",
+    "start": "2026-11-07",
+    "end": "",
+    "time": "12 - 5 PM",
+    "blurb": "Stop by Lucky Hare Brewing Company in Hector for their Holiday Market featuring vendors, bonfires, s'mores kits, food specials, holiday cocktails, and live music from 2 to 5 PM.",
+    "poster": "posters/lucky-hare-brewing-company-holiday-market-2026.jpg",
+    "url": "https://www.luckyharebrewing.com",
+    "tags": []
+  },
+  {
     "name": "Thanksgiving Pre-Game",
     "business": "Grist Iron Brewing",
     "start": "2026-11-25",
