@@ -231,6 +231,22 @@
     "tags": []
   },
   {
+    "name": "2nd Annual Tinsel & Tastings Event",
+    "business": "Hector Cork & Bottle",
+    "start": "2026-11-14",
+    "end": "",
+    "time": "2 - 5 PM",
+    "blurb": "Kick off the holidays at Hector Cork & Bottle with tastings and shopping featuring local friends Vagabond Wines, Plume Creations, Seneca Shimmer, D&M Custom Creations, and Greene Gifts.",
+    "poster": "posters/hector-cork-bottle-2nd-annual-tinsel-tastings-event-2026.png",
+    "url": "https://www.southeastseneca.com/events",
+    "tags": [
+      "holiday",
+      "wine tasting",
+      "shopping",
+      "crafts"
+    ]
+  },
+  {
     "name": "Thanksgiving Pre-Game",
     "business": "Grist Iron Brewing",
     "start": "2026-11-25",
