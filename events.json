@@ -194,6 +194,21 @@
     ]
   },
   {
+    "name": "Halloween Pregame!",
+    "business": "Two Goats Brewing",
+    "start": "2026-10-31",
+    "end": "",
+    "time": "5 - 8 PM",
+    "blurb": "Come in costume or not for music with 2 Horse Johnson and a donation to local nonprofit Trash-to-Treasure Canine Rescue.",
+    "poster": "posters/two-goats-brewing-halloween-pregame-2026.png",
+    "url": "http://www.twogoatsbrewing.com/",
+    "tags": [
+      "music",
+      "fundraiser",
+      "halloween"
+    ]
+  },
+  {
     "name": "Harvest's End: A Pairing Dinner at the Winegarden",
     "business": "Silver Thread Vineyard",
     "start": "2026-11-06",
