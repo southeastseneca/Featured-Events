@@ -286,5 +286,20 @@
       "live music",
       "cocktails"
     ]
+  },
+  {
+    "name": "Halloween Party: Good vs Evil",
+    "business": "Rasta Ranch Vineyards",
+    "start": "2027-10-26",
+    "end": "",
+    "time": "5 - 8 PM",
+    "blurb": "Head to Rasta Ranch Vineyards for a Good vs Evil themed Halloween party featuring Monday Night Blues and food from The Weenie Wagon.",
+    "poster": "posters/rasta-ranch-vineyards-halloween-party-good-vs-evil-2027.jpg",
+    "url": "https://www.southeastseneca.com/events",
+    "tags": [
+      "halloween",
+      "live music",
+      "food"
+    ]
   }
 ]
