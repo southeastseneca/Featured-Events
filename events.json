@@ -261,6 +261,22 @@
     ]
   },
   {
+    "name": "Noir Friday",
+    "business": "Silver Thread Winegarden",
+    "start": "2026-11-27",
+    "end": "",
+    "time": "12 - 5 PM",
+    "blurb": "Stop by for a doorbuster wine sale, festive wine and food pairings, winemaker-led tastings at the bar, and a bonfire weather permitting.",
+    "poster": "posters/silver-thread-winegarden-noir-friday-2026.jpg",
+    "url": "http://www.silverthreadwine.com",
+    "tags": [
+      "wine",
+      "food",
+      "tasting",
+      "sale"
+    ]
+  },
+  {
     "name": "Crafted & Curated Holiday Market",
     "business": "Ria's Wines",
     "start": "2026-11-28",
