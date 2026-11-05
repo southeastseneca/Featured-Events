@@ -325,5 +325,20 @@
       "valentine's day",
       "food"
     ]
+  },
+  {
+    "name": "Valentine's Brunch",
+    "business": "Hector Hideaway",
+    "start": "2027-02-14",
+    "end": "",
+    "time": "10:00 AM - 1:00 PM",
+    "blurb": "Enjoy Valentine's Brunch at Hector Hideaway from 10:00 AM to 1:00 PM. Reservations are recommended.",
+    "poster": "posters/hector-hideaway-valentine-s-brunch-2027.png",
+    "url": "https://www.southeastseneca.com/events",
+    "tags": [
+      "brunch",
+      "Valentine's Day",
+      "food"
+    ]
   }
 ]
