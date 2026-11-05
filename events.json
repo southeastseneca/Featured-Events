@@ -340,5 +340,16 @@
       "Valentine's Day",
       "food"
     ]
+  },
+  {
+    "name": "Superbowl Party & Take Out Event",
+    "business": "Hector Hideaway",
+    "start": "2027-02-14",
+    "end": "",
+    "time": "5:00 PM - End of the Game!",
+    "blurb": "",
+    "poster": "posters/hector-hideaway-superbowl-party-take-out-event-2027.png",
+    "url": "https://www.southeastseneca.com/events",
+    "tags": []
   }
 ]
