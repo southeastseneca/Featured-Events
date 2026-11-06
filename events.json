@@ -312,6 +312,22 @@
     ]
   },
   {
+    "name": "New Year's Eve Dinner",
+    "business": "Hector Hideaway",
+    "start": "2026-12-31",
+    "end": "",
+    "time": "5:00 PM - 10:00 PM",
+    "blurb": "Celebrate New Year's Eve with a 4-course pre-fixed menu at Hector Hideaway featuring amuse bouche, appetizer, entree, and dessert. Seatings are available at 5:00 PM, 6:15 PM, 7:30 PM, and 8:45 PM. Reservations are required online.",
+    "poster": "posters/hector-hideaway-new-year-s-eve-dinner-2026.png",
+    "url": "https://www.hectorhideaway.com/contact",
+    "tags": [
+      "dinner",
+      "new year's eve",
+      "food",
+      "dining"
+    ]
+  },
+  {
     "name": "Cabin Fever Weekend",
     "business": "Hector Hideaway",
     "start": "2027-01-16",
