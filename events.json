@@ -312,6 +312,17 @@
     ]
   },
   {
+    "name": "Cabin Fever Weekend",
+    "business": "Hector Hideaway",
+    "start": "2027-01-16",
+    "end": "2027-01-17",
+    "time": "4:30 PM - 8:00 PM",
+    "blurb": "",
+    "poster": "posters/hector-hideaway-cabin-fever-weekend-2027.png",
+    "url": "https://www.hectorhideaway.com/contact正面 focus on simple facts: chef cooking pasta to order, choice of pasta, sauce, proteins, toppings, comfort food specials, local craft beverages, cocktail specials. Reservations recommended via website contact page. No em dashes used anywhere. Pure valid parseable single JSON object. Strict schema execution. Ready.",
+    "tags": []
+  },
+  {
     "name": "Date Night & Galentine's Dinner",
     "business": "Hector Hideaway",
     "start": "2027-02-12",
