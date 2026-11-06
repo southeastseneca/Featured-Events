@@ -312,6 +312,22 @@
     ]
   },
   {
+    "name": "Date Night & Galentine's Dinner",
+    "business": "Hector Hideaway",
+    "start": "2027-02-12",
+    "end": "",
+    "time": "4:30 PM - 9:00 PM",
+    "blurb": "Hector Hideaway is hosting a Date Night & Galentine's Dinner with cocktail specials, sharable appetizers, crave worthy entrées, and dessert flights. Reservations are recommended.",
+    "poster": "posters/hector-hideaway-date-night-galentine-s-dinner-2027.png",
+    "url": "https://www.hectorhideaway.com/contact",
+    "tags": [
+      "Date Night",
+      "Galentine's Dinner",
+      "Food & Drink",
+      "Specials"
+    ]
+  },
+  {
     "name": "Valentine's Dinner",
     "business": "Hector Hideaway Restaurant & Bar",
     "start": "2027-02-13",
