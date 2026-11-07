@@ -307,6 +307,22 @@
     "tags": []
   },
   {
+    "name": "Deck the Halls Seneca Lake Wine Trail Event",
+    "business": "Hector Hideaway",
+    "start": "2026-12-05",
+    "end": "2026-12-06",
+    "time": "Sat 4:00 PM - 8:00 PM, Sun 9:00 AM - 1:00 PM",
+    "blurb": "Hector Hideaway is having food and drink specials decked out with Christmas decor and music for the Deck the Halls Seneca Lake Wine Trail Event. Enjoy a Saturday dinner special from 4:00 PM to 8:00 PM with soup, craft beverages, and a limited menu. Sunday brunch runs from 9:00 AM to 1:00 PM with brunch favorites and cocktail specials. Reservations are recommended.",
+    "poster": "posters/hector-hideaway-deck-the-halls-seneca-lake-wine-trail-event-2026.png",
+    "url": "https://www.southeastseneca.com/events",
+    "tags": [
+      "Food & Drink",
+      "Wine Trail",
+      "Brunch",
+      "Dinner"
+    ]
+  },
+  {
     "name": "Christmas at the Brewery",
     "business": "Lucky Hare Brewing Company",
     "start": "2026-12-19",
